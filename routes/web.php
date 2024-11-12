@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-
+use App\Http\Controllers\CategoryController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
 Route::get('/', function () {
     return view(('home'));
@@ -34,3 +34,6 @@ Route::get('/products', function () {
     );
     return response()->json($products);
 });
+
+Route::resource('categories', CategoryController::class);
+// Route::post('/categories', [CategoryController::class, 'store']);    
