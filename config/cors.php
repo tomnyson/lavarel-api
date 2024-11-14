@@ -2,7 +2,7 @@
 
 return [
 
-    'paths' => ['api/*', 'categories/*', 'categories'], // Specify 'categories/*' to enable CORS for categories routes
+    'paths' => ['api/*',], // Specify 'categories/*' to enable CORS for categories routes
 
     'allowed_methods' => ['*'], // Allow all HTTP methods (or specify ['GET', 'POST', etc.])
 

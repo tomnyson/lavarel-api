@@ -10,10 +10,12 @@ php artisan migrate
 ## create middleware
 php artisan make:middleware CheckAdmin
 ## clearn
+```sh
 php artisan cache:clear
 php artisan config:clear
 php artisan route:clear
 php artisan view:clear
+```
 ## create model
 php artisan make:model Blog -m
 ## create controller

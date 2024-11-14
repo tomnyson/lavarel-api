@@ -34,6 +34,8 @@ Route::get('/products', function () {
     );
     return response()->json($products);
 });
+Route::prefix('api')->group(function () {
+    Route::resource('categories', CategoryController::class);
+});
 
-Route::resource('categories', CategoryController::class);
 // Route::post('/categories', [CategoryController::class, 'store']);    
