@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
@@ -35,7 +36,7 @@ Route::get('/products', function () {
     return response()->json($products);
 });
 Route::prefix('api')->group(function () {
-    Route::resource('categories', CategoryController::class);
+    // Route::resource('categories', CategoryController::class);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
 });
-
-// Route::post('/categories', [CategoryController::class, 'store']);    
