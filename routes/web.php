@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
 Route::get('/', function () {
@@ -35,8 +37,15 @@ Route::get('/products', function () {
     );
     return response()->json($products);
 });
-Route::prefix('api')->group(function () {
-    // Route::resource('categories', CategoryController::class);
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/login', [AuthController::class, 'login']);
+Route::prefix('api')->middleware('auth:sanctum')->group(function () {
+    Route::get('/cart', [CartController::class, 'index']);
+    Route::post('/cart/add', [CartController::class, 'add']);
+    Route::delete('/cart/remove/{id}', [CartController::class, 'remove']);
 });
+
+Route::resource('/api/categories', CategoryController::class);
+Route::resource('api/products', ProductController::class);
+
+
+Route::post('/api/register', [AuthController::class, 'register']);
+Route::post('/api/login', [AuthController::class, 'login']);
